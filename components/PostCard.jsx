@@ -26,14 +26,23 @@ const PostCard = ({ post }) => (
     </h1>
     <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
       <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8 items-center">
-      <Image
-  unoptimized
-  loader={grpahCMSImageLoader}
-  alt={post.author.name}
-  width={30}
-  height={30}
-  className="rounded-full"
-/>
+      <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
+  <div className="w-8 h-8 relative">
+    <Image
+      unoptimized
+      loader={grpahCMSImageLoader}
+      alt={post.author.name}
+      src={post.author.photo.url}
+      layout="fill"
+      objectFit="cover"
+      className="rounded-full"
+    />
+  </div>
+  <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">
+    {post.author.name}
+  </p>
+</div>
+
 
         <p className="inline align-middle text-gray-700 ml-2 font-medium text-lg">{post.author.name}</p>
       </div>
