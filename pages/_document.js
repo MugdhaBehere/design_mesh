@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
+
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -19,7 +20,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-        
+   
         </body>
       </Html>
     );
