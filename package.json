@@ -13,7 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.1.1",
+   
     "graphql": "^15.8.0",
     "graphql-request": "^3.7.0",
     "html-react-parser": "^1.4.14",
