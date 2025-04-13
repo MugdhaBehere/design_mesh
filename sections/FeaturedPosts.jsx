@@ -35,16 +35,16 @@ const FeaturedPosts = () => {
     });
   }, []);
 
-  // Custom Arrow Components (Intermediate Size)
+  // Custom Arrow Components (Intermediate Size - w-12/h-8)
   const CustomLeftArrowComponent = ({ onClick }) => (
     <div
-      // Intermediate container size: w-12 h-12, padding p-2
+      // Container size: w-12 h-12 (48px), padding p-2 (8px)
       className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
       onClick={() => onClick()}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        // Intermediate SVG size: h-8 w-8
+        // SVG size: h-8 w-8 (32px)
         className="h-8 w-8 text-white"
         fill="none"
         viewBox="0 0 24 24"
@@ -57,13 +57,13 @@ const FeaturedPosts = () => {
 
   const CustomRightArrowComponent = ({ onClick }) => (
     <div
-      // Intermediate container size: w-12 h-12, padding p-2
+      // Container size: w-12 h-12 (48px), padding p-2 (8px)
       className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
       onClick={() => onClick()}
     >
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        // Intermediate SVG size: h-8 w-8
+        xmlns="http://www.w3.org/_2000/svg"
+        // SVG size: h-8 w-8 (32px)
         className="h-8 w-8 text-white"
         fill="none"
         viewBox="0 0 24 24"
