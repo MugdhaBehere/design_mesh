@@ -35,25 +35,23 @@ const FeaturedPosts = () => {
     });
   }, []);
 
+  // Custom Left Arrow
   const customLeftArrow = (
-    <div className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 arrow-btn text-center p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 text-center p-3 cursor-pointer bg-pink-600 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
       </svg>
     </div>
   );
-  
-  
 
+  // Custom Right Arrow
   const customRightArrow = (
-    <div className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 arrow-btn text-center p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg">
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 text-center p-3 cursor-pointer bg-pink-600 rounded-full">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
       </svg>
     </div>
   );
-  
-  
 
   return (
     <div className="mb-8 relative">
@@ -65,14 +63,12 @@ const FeaturedPosts = () => {
         itemClass="px-4"
         containerClass="relative flex items-center"
       >
-        {dataLoaded &&
-          featuredPosts.map((post, index) => (
-            <FeaturedPostCard key={index} post={post} />
-          ))}
+        {dataLoaded && featuredPosts.map((post, index) => (
+          <FeaturedPostCard key={index} post={post} />
+        ))}
       </Carousel>
     </div>
   );
-  
 };
 
 export default FeaturedPosts;
