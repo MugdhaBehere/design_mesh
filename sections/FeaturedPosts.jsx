@@ -13,72 +13,87 @@ const responsive = {
   mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
 };
 
-const CustomLeftArrowComponent = ({ onClick }) => (
-  <div
-    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center" // Using w-12/h-8 from previous step
-    onClick={() => onClick()}
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-    </svg>
-  </div>
-);
+// Simple Custom Arrow Components for Testing
+const CustomLeftArrowComponent = ({ onClick }) => {
+  // Log to ensure this component is attempted to be rendered by the library
+  console.log("Rendering Simple CustomLeftArrowComponent"); 
+  return (
+    <button 
+      onClick={onClick} 
+      // Basic styling to make it visible and positioned
+      style={{ 
+        position: 'absolute', 
+        left: '10px',             // Position from left
+        top: '50%',               // Roughly vertical center
+        transform: 'translateY(-50%)', // More precise vertical center
+        zIndex: 10,               // Ensure it's above other items
+        background: 'red',      // Make it very visible
+        color: 'white',
+        padding: '10px',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer' 
+      }}
+    >
+      LEFT TEST
+    </button>
+  );
+};
 
-const CustomRightArrowComponent = ({ onClick }) => (
-  <div
-    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center" // Using w-12/h-8 from previous step
-    onClick={() => onClick()}
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-    </svg>
-  </div>
-);
-// --- End definitions ---
+const CustomRightArrowComponent = ({ onClick }) => {
+  // Log to ensure this component is attempted to be rendered by the library
+  console.log("Rendering Simple CustomRightArrowComponent"); 
+  return (
+    <button 
+      onClick={onClick} 
+      // Basic styling to make it visible and positioned
+      style={{ 
+        position: 'absolute', 
+        right: '10px',            // Position from right
+        top: '50%',               // Roughly vertical center
+        transform: 'translateY(-50%)', // More precise vertical center
+        zIndex: 10,               // Ensure it's above other items
+        background: 'blue',     // Make it very visible
+        color: 'white',
+        padding: '10px',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer' 
+      }}
+    >
+      RIGHT TEST
+    </button>
+  );
+};
 
-
+// --- Make sure you update your FeaturedPosts component ---
 const FeaturedPosts = () => {
-  const [featuredPosts, setFeaturedPosts] = useState([]);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  // ... (keep useState, useEffect, responsive) ...
 
-  useEffect(() => {
-    console.log('FeaturedPosts: useEffect triggered'); // Log effect trigger
-    getFeaturedPosts().then((result) => {
-      console.log('FeaturedPosts: Data fetched successfully. Result:', result); // Log fetched data
-      setFeaturedPosts(result);
-      setDataLoaded(true);
-    }).catch(error => {
-      console.error('FeaturedPosts: Error fetching data:', error); // Log errors during fetch
-      // Optionally set dataLoaded to true even on error, or handle differently
-      // setDataLoaded(true); 
-    });
-  }, []);
+  // --- Use the SIMPLE arrow components defined above ---
 
-  // Log state right before rendering
+  // Make sure this is false again to use custom arrows
+  const showDefaultControls = false; 
+
   console.log('FeaturedPosts: Rendering component. Data Loaded:', dataLoaded, 'Posts Array:', featuredPosts);
-
-  // *** Temporary Test: Check if default arrows render ***
-  // If the console logs look okay but arrows still don't appear,
-  // try commenting out the custom arrows and uncommenting the line below
-  // const showDefaultControls = true; 
-  const showDefaultControls = true; // Set to true to test default controls
 
   return (
     <div className="mb-8 relative">
       <Carousel
         infinite
-        customLeftArrow={!showDefaultControls ? <CustomLeftArrowComponent /> : undefined}
+        // Ensure you are passing the custom components
+        customLeftArrow={!showDefaultControls ? <CustomLeftArrowComponent /> : undefined} 
         customRightArrow={!showDefaultControls ? <CustomRightArrowComponent /> : undefined}
         responsive={responsive}
         itemClass="px-4"
-        showDots={showDefaultControls} // Show dots if testing default controls
+        // showDots={showDefaultControls} // You can remove or keep this
       >
-        {dataLoaded && featuredPosts && featuredPosts.length > 0 ? ( // Added check for non-empty array
+        {/* ... (keep data mapping logic) ... */}
+        {dataLoaded && featuredPosts && featuredPosts.length > 0 ? (
              featuredPosts.map((post, index) => (
               <FeaturedPostCard key={index} post={post} />
             ))
         ) : (
-          // Optional: Render a loading message or placeholder if needed
           dataLoaded ? <p>No featured posts available.</p> : <p>Loading posts...</p> 
         )}
       </Carousel>
