@@ -14,108 +14,103 @@ const responsive = {
   mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
 };
 
-// Simple Custom Arrow Components for Testing
-const CustomLeftArrowComponent = ({ onClick }) => {
-  // Log to ensure this component is attempted to be rendered by the library
-  console.log("Rendering Simple CustomLeftArrowComponent");
-  return (
-    <button
-      onClick={onClick}
-      // Basic styling to make it visible and positioned
-      style={{
-        position: 'absolute',
-        left: '10px',             // Position from left
-        top: '50%',               // Roughly vertical center
-        transform: 'translateY(-50%)', // More precise vertical center
-        zIndex: 10,               // Ensure it's above other items
-        background: 'red',      // Make it very visible
-        color: 'white',
-        padding: '10px',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer'
-      }}
+// Restored Custom Arrow Components (w-12 / h-8 size)
+const CustomLeftArrowComponent = ({ onClick }) => (
+  <div
+    // Apply all necessary Tailwind classes for styling and positioning
+    // Using w-12 h-12 container and p-2 padding
+    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
+    onClick={onClick} // Ensure onClick is passed to the clickable element
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      // Apply size (h-8 w-8) and color classes to the SVG
+      className="h-8 w-8 text-white"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
     >
-      LEFT TEST
-    </button>
-  );
-};
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M10 19l-7-7m0 0l7-7m-7 7h18"
+      />
+    </svg>
+  </div>
+);
 
-const CustomRightArrowComponent = ({ onClick }) => {
-  // Log to ensure this component is attempted to be rendered by the library
-  console.log("Rendering Simple CustomRightArrowComponent");
-  return (
-    <button
-      onClick={onClick}
-      // Basic styling to make it visible and positioned
-      style={{
-        position: 'absolute',
-        right: '10px',            // Position from right
-        top: '50%',               // Roughly vertical center
-        transform: 'translateY(-50%)', // More precise vertical center
-        zIndex: 10,               // Ensure it's above other items
-        background: 'blue',     // Make it very visible
-        color: 'white',
-        padding: '10px',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer'
-      }}
+const CustomRightArrowComponent = ({ onClick }) => (
+  <div
+    // Apply all necessary Tailwind classes for styling and positioning
+    // Using w-12 h-12 container and p-2 padding
+    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
+    onClick={onClick} // Ensure onClick is passed to the clickable element
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      // Apply size (h-8 w-8) and color classes to the SVG
+      className="h-8 w-8 text-white"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
     >
-      RIGHT TEST
-    </button>
-  );
-};
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M14 5l7 7m0 0l-7 7m7-7H3"
+      />
+    </svg>
+  </div>
+);
+// --- End Custom Arrow Components ---
 
 // Main FeaturedPosts Component
 const FeaturedPosts = () => {
-  // State hooks MUST be called inside the component body
+  // State hooks
   const [featuredPosts, setFeaturedPosts] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
 
-  // Effect hook MUST be called inside the component body
+  // Effect hook for data fetching
   useEffect(() => {
-    console.log('FeaturedPosts: useEffect triggered');
+    // console.log('FeaturedPosts: useEffect triggered'); // Keep logs if needed
     getFeaturedPosts().then((result) => {
-      console.log('FeaturedPosts: Data fetched successfully. Result:', result);
-      // Ensure result is always an array, even if API returns null/undefined
+      // console.log('FeaturedPosts: Data fetched successfully. Result:', result);
       setFeaturedPosts(Array.isArray(result) ? result : []);
       setDataLoaded(true);
     }).catch(error => {
       console.error('FeaturedPosts: Error fetching data:', error);
-      setFeaturedPosts([]); // Set empty array on error
-      setDataLoaded(true); // Still mark as loaded to potentially show "No posts" message
+      setFeaturedPosts([]);
+      setDataLoaded(true);
     });
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
 
-  // This log caused build errors if placed before useState, keep commented for now
+  // Keep this commented out to prevent potential build errors
   // console.log('FeaturedPosts: Rendering component. Data Loaded:', dataLoaded, 'Posts Array:', featuredPosts);
 
-  // Variable to easily switch between custom/default arrows if needed later
+  // Use custom arrows
   const showDefaultControls = false;
 
   return (
-    <div className="mb-8 relative"> {/* Ensure this div has relative positioning */}
+    <div className="mb-8 relative">
       <Carousel
-        infinite // Enable infinite looping
-        // Pass the custom arrow components if not showing default
+        infinite
+        // Pass the RESTORED custom arrow components
         customLeftArrow={!showDefaultControls ? <CustomLeftArrowComponent /> : undefined}
         customRightArrow={!showDefaultControls ? <CustomRightArrowComponent /> : undefined}
-        responsive={responsive} // Apply responsive settings
-        itemClass="px-4" // Add padding around each carousel item
+        responsive={responsive}
+        itemClass="px-4"
       >
-        {/* Conditionally render posts based on dataLoaded and if posts exist */}
+        {/* Conditional rendering of posts */}
         {dataLoaded && featuredPosts && featuredPosts.length > 0 ? (
              featuredPosts.map((post, index) => (
-              // Ensure FeaturedPostCard component is correctly imported and used
               <FeaturedPostCard key={index} post={post} />
             ))
         ) : (
-          // Display a message while loading or if no posts are available
-          // Avoids layout shifts or errors if featuredPosts is initially null/undefined
-          <div style={{ textAlign: 'center', padding: '20px', color: '#888' }}> {/* Basic styling for message */}
+           <div style={{ textAlign: 'center', padding: '20px', color: '#888' }}>
              {dataLoaded ? 'No featured posts available.' : 'Loading posts...'}
-          </div>
+           </div>
         )}
       </Carousel>
     </div>
