@@ -58,10 +58,12 @@ const FeaturedPosts = () => {
         responsive={responsive}
         customLeftArrow={customLeftArrow}
         customRightArrow={customRightArrow}
+        itemClass="px-2 sm:px-4 md:px-6"
+        containerClass="py-6"
       >
         {dataLoaded &&
           featuredPosts.map((post, index) => (
-            <div key={index} className="px-2 sm:px-4 md:px-6 h-full">
+            <div key={index} className="h-full">
   <FeaturedPostCard post={post} />
 </div>
 
