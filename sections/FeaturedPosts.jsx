@@ -37,7 +37,7 @@ const FeaturedPosts = () => {
 
   // Custom Left Arrow
   const customLeftArrow = (
-    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-4 cursor-pointer bg-pink-600 rounded-full">
+    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-4 cursor-pointer bg-pink-600 rounded-full shadow-lg">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
       </svg>
@@ -46,7 +46,7 @@ const FeaturedPosts = () => {
 
   // Custom Right Arrow
   const customRightArrow = (
-    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-4 cursor-pointer bg-pink-600 rounded-full">
+    <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-4 cursor-pointer bg-pink-600 rounded-full shadow-lg">
       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
       </svg>
