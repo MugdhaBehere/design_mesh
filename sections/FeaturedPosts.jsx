@@ -5,7 +5,6 @@ import 'react-multi-carousel/lib/styles.css';
 import { FeaturedPostCard } from '../components';
 import { getFeaturedPosts } from '../services';
 
-// Responsive breakpoints for carousel
 const responsive = {
   superLargeDesktop: { breakpoint: { max: 4000, min: 1024 }, items: 5 },
   desktop: { breakpoint: { max: 1024, min: 768 }, items: 3 },
@@ -13,50 +12,38 @@ const responsive = {
   mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
 };
 
-// Custom Left Arrow
-const CustomLeftArrowComponent = ({ onClick }) => (
-  <div
-    className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
+const CustomLeftArrow = ({ onClick }) => (
+  <button
     onClick={onClick}
+    className="absolute left-2 top-1/2 transform -translate-y-1/2 z-50 bg-pink-600 text-white rounded-full p-2 focus:outline-none"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5 text-pink-600"
+      className="h-4 w-4"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M15 19l-7-7 7-7"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
     </svg>
-  </div>
+  </button>
 );
 
-// Custom Right Arrow
-const CustomRightArrowComponent = ({ onClick }) => (
-  <div
-    className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
+const CustomRightArrow = ({ onClick }) => (
+  <button
     onClick={onClick}
+    className="absolute right-2 top-1/2 transform -translate-y-1/2 z-50 bg-pink-600 text-white rounded-full p-2 focus:outline-none"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-5 w-5 text-pink-600"
+      className="h-4 w-4"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M9 5l7 7-7 7"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
     </svg>
-  </div>
+  </button>
 );
 
 const FeaturedPosts = () => {
@@ -81,8 +68,8 @@ const FeaturedPosts = () => {
       <Carousel
         infinite
         arrows={false}
-        customLeftArrow={<CustomLeftArrowComponent />}
-        customRightArrow={<CustomRightArrowComponent />}
+        customLeftArrow={<CustomLeftArrow />}
+        customRightArrow={<CustomRightArrow />}
         responsive={responsive}
         itemClass="px-4"
       >
