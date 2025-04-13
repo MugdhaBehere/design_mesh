@@ -85,11 +85,11 @@ const FeaturedPosts = () => {
   return (
     // Added `relative` class to the parent div
     <div className="mb-8 relative">
-      <Carousel
+       <Carousel
         infinite
-        // Pass the arrow *components*
-        customLeftArrow={<CustomLeftArrowComponent />}
-        customRightArrow={<CustomRightArrowComponent />}
+        // SWAP the components passed to the props
+        customLeftArrow={<CustomRightArrowComponent />} // Right component passed to Left prop
+        customRightArrow={<CustomLeftArrowComponent />} // Left component passed to Right prop
         responsive={responsive}
         itemClass="px-4"
       >
