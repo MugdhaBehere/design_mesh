@@ -36,15 +36,21 @@ const PostDetails = ({ post }) => {
 };
 export default PostDetails;
 
-// Fetch data at build time
 export async function getStaticProps({ params }) {
-  const data = await getPostDetails(params.slug);
-  return {
-    props: {
-      post: data,
-    },
-  };
+  try {
+    const data = await hygraphClient.request(POST_DETAILS_QUERY, { slug: params.slug });
+    return {
+      props: { post: data.post },
+      revalidate: 60,
+    };
+  } catch (err) {
+    console.error("GraphQL error:", err);
+    return {
+      notFound: true, // Optional: show 404 if fetch fails
+    };
+  }
 }
+
 
 // Specify dynamic routes to pre-render pages based on data.
 // The HTML is generated at build time and will be reused on each request.
