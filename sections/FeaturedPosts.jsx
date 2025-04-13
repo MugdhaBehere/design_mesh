@@ -35,8 +35,9 @@ const FeaturedPosts = () => {
     });
   }, []);
 
-  // Custom Left Arrow
+ 
   const customLeftArrow = (
+    
     <div
       className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-8 h-8 flex justify-center items-center"
     >
@@ -46,7 +47,7 @@ const FeaturedPosts = () => {
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        style={{ width: '100%', height: '100%' }} // Ensure the SVG scales properly
+       
       >
         <path
           strokeLinecap="round"
@@ -58,18 +59,19 @@ const FeaturedPosts = () => {
     </div>
   );
 
-  // Custom Right Arrow
+  
   const customRightArrow = (
+  
     <div
       className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-8 h-8 flex justify-center items-center"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5 text-white"
+        className="h-5 w-5 text-white" 
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        style={{ width: '100%', height: '100%' }} // Ensure the SVG scales properly
+       
       >
         <path
           strokeLinecap="round"
@@ -81,12 +83,38 @@ const FeaturedPosts = () => {
     </div>
   );
 
+ 
+  const CustomLeftArrowComponent = ({ onClick }) => (
+    <div
+      className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-8 h-8 flex justify-center items-center"
+      onClick={() => onClick()} 
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+      </svg>
+    </div>
+  );
+
+  const CustomRightArrowComponent = ({ onClick }) => (
+    <div
+      className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-8 h-8 flex justify-center items-center"
+      onClick={() => onClick()} 
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+      </svg>
+    </div>
+  );
+ 
+
+
   return (
     <div className="mb-8 relative">
       <Carousel
         infinite
-        customLeftArrow={customLeftArrow}
-        customRightArrow={customRightArrow}
+       
+        customLeftArrow={<CustomLeftArrowComponent />}
+        customRightArrow={<CustomRightArrowComponent />}
         responsive={responsive}
         itemClass="px-4"
       >
