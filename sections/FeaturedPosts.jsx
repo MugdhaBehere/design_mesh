@@ -14,56 +14,59 @@ const responsive = {
   mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
 };
 
-// Restored Custom Arrow Components (w-12 / h-8 size)
-const CustomLeftArrowComponent = ({ onClick }) => (
-  <div
-    // Apply all necessary Tailwind classes for styling and positioning
-    // Using w-12 h-12 container and p-2 padding
-    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
-    onClick={onClick} // Ensure onClick is passed to the clickable element
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      // Apply size (h-8 w-8) and color classes to the SVG
-      className="h-8 w-8 text-white"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M10 19l-7-7m0 0l7-7m-7 7h18"
-      />
-    </svg>
-  </div>
-);
+const CustomLeftArrowComponent = ({ onClick }) => {
+  console.log("Rendering Basic Styled Div Left Arrow"); // New log message
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        // Positioning (same as Tailwind classes)
+        position: 'absolute',
+        left: '16px', // left-4
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        cursor: 'pointer',
 
-const CustomRightArrowComponent = ({ onClick }) => (
-  <div
-    // Apply all necessary Tailwind classes for styling and positioning
-    // Using w-12 h-12 container and p-2 padding
-    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
-    onClick={onClick} // Ensure onClick is passed to the clickable element
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      // Apply size (h-8 w-8) and color classes to the SVG
-      className="h-8 w-8 text-white"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
+        // Basic Appearance (mimicking Tailwind)
+        width: '48px',       // w-12
+        height: '48px',      // h-12
+        backgroundColor: '#DB2777', // bg-pink-600
+        borderRadius: '50%',   // rounded-full
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' // shadow-lg approx.
+      }}
     >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M14 5l7 7m0 0l-7 7m7-7H3"
-      />
-    </svg>
-  </div>
-);
+      {/* No content inside yet */}
+    </div>
+  );
+};
+
+const CustomRightArrowComponent = ({ onClick }) => {
+  console.log("Rendering Basic Styled Div Right Arrow"); // New log message
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        // Positioning (same as Tailwind classes)
+        position: 'absolute',
+        right: '16px', // right-4
+        top: '50%',
+        transform: 'translateY(-50%)',
+        zIndex: 10,
+        cursor: 'pointer',
+
+        // Basic Appearance (mimicking Tailwind)
+        width: '48px',       // w-12
+        height: '48px',      // h-12
+        backgroundColor: '#DB2777', // bg-pink-600
+        borderRadius: '50%',   // rounded-full
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' // shadow-lg approx.
+      }}
+    >
+      {/* No content inside yet */}
+    </div>
+  );
+};
 // --- End Custom Arrow Components ---
 
 // Main FeaturedPosts Component
