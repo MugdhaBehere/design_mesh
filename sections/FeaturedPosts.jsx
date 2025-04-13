@@ -38,11 +38,11 @@ const FeaturedPosts = () => {
   // Custom Left Arrow
   const customLeftArrow = (
     <div
-      className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-10 h-10 flex justify-center items-center"
+      className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-8 h-8 flex justify-center items-center"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6 text-white"
+        className="h-5 w-5 text-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -61,11 +61,11 @@ const FeaturedPosts = () => {
   // Custom Right Arrow
   const customRightArrow = (
     <div
-      className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-10 h-10 flex justify-center items-center"
+      className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-8 h-8 flex justify-center items-center"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6 text-white"
+        className="h-5 w-5 text-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
