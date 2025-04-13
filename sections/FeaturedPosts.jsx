@@ -61,7 +61,6 @@ const FeaturedPosts = () => {
         customRightArrow={customRightArrow}
         responsive={responsive}
         itemClass="px-4"
-        containerClass="relative"
       >
         {dataLoaded && featuredPosts.map((post, index) => (
           <FeaturedPostCard key={index} post={post} />
