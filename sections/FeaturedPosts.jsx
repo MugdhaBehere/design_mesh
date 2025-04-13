@@ -14,59 +14,56 @@ const responsive = {
   mobile: { breakpoint: { max: 640, min: 0 }, items: 1 },
 };
 
-const CustomLeftArrowComponent = ({ onClick }) => {
-  console.log("Rendering Basic Styled Div Left Arrow"); // New log message
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        // Positioning (same as Tailwind classes)
-        position: 'absolute',
-        left: '16px', // left-4
-        top: '50%',
-        transform: 'translateY(-50%)',
-        zIndex: 10,
-        cursor: 'pointer',
-
-        // Basic Appearance (mimicking Tailwind)
-        width: '48px',       // w-12
-        height: '48px',      // h-12
-        backgroundColor: '#DB2777', // bg-pink-600
-        borderRadius: '50%',   // rounded-full
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' // shadow-lg approx.
-      }}
+// Custom Arrow Components with SVG and Adjusted Position
+const CustomLeftArrowComponent = ({ onClick }) => (
+  <div
+    // Using Tailwind classes for ALL styling now
+    // Position adjusted to left-0
+    // Flex, padding, SVG size (h-8 w-8) are back
+    className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
+    onClick={onClick}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-8 w-8 text-white" // Size h-8 w-8
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
     >
-      {/* No content inside yet */}
-    </div>
-  );
-};
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M10 19l-7-7m0 0l7-7m-7 7h18"
+      />
+    </svg>
+  </div>
+);
 
-const CustomRightArrowComponent = ({ onClick }) => {
-  console.log("Rendering Basic Styled Div Right Arrow"); // New log message
-  return (
-    <div
-      onClick={onClick}
-      style={{
-        // Positioning (same as Tailwind classes)
-        position: 'absolute',
-        right: '16px', // right-4
-        top: '50%',
-        transform: 'translateY(-50%)',
-        zIndex: 10,
-        cursor: 'pointer',
-
-        // Basic Appearance (mimicking Tailwind)
-        width: '48px',       // w-12
-        height: '48px',      // h-12
-        backgroundColor: '#DB2777', // bg-pink-600
-        borderRadius: '50%',   // rounded-full
-        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' // shadow-lg approx.
-      }}
+const CustomRightArrowComponent = ({ onClick }) => (
+  <div
+    // Using Tailwind classes for ALL styling now
+    // Position adjusted to right-0
+    // Flex, padding, SVG size (h-8 w-8) are back
+    className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
+    onClick={onClick}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-8 w-8 text-white" // Size h-8 w-8
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
     >
-      {/* No content inside yet */}
-    </div>
-  );
-};
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M14 5l7 7m0 0l-7 7m7-7H3"
+      />
+    </svg>
+  </div>
+);
 // --- End Custom Arrow Components ---
 
 // Main FeaturedPosts Component
@@ -77,9 +74,7 @@ const FeaturedPosts = () => {
 
   // Effect hook for data fetching
   useEffect(() => {
-    // console.log('FeaturedPosts: useEffect triggered'); // Keep logs if needed
     getFeaturedPosts().then((result) => {
-      // console.log('FeaturedPosts: Data fetched successfully. Result:', result);
       setFeaturedPosts(Array.isArray(result) ? result : []);
       setDataLoaded(true);
     }).catch(error => {
@@ -89,17 +84,15 @@ const FeaturedPosts = () => {
     });
   }, []);
 
-  // Keep this commented out to prevent potential build errors
+  // Keep this commented out
   // console.log('FeaturedPosts: Rendering component. Data Loaded:', dataLoaded, 'Posts Array:', featuredPosts);
 
-  // Use custom arrows
   const showDefaultControls = false;
 
   return (
     <div className="mb-8 relative">
       <Carousel
         infinite
-        // Pass the RESTORED custom arrow components
         customLeftArrow={!showDefaultControls ? <CustomLeftArrowComponent /> : undefined}
         customRightArrow={!showDefaultControls ? <CustomRightArrowComponent /> : undefined}
         responsive={responsive}
