@@ -30,7 +30,7 @@ const PostCard = ({ post }) => (
          
           className="rounded-full object-cover"
         />
-        <p className="inline align-middle text-gray-700 ml-px font-medium text-lg">{post.author.name}</p>
+        <p className="inline align-middle text-gray-700 ml-1 font-medium text-lg">{post.author.name}</p>
        
       </div>
       
