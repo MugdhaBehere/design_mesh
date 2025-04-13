@@ -2,8 +2,9 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { PostDetail, Categories, PostWidget, Author, Comments, CommentsForm, Loader } from '../../components';
-import { getPosts, getPostDetails } from '../../services';
+import { getPosts } from '../../services';
 import { AdjacentPosts } from '../../sections';
+import { hygraphClient, POST_DETAILS_QUERY } from '../../services';
 
 const PostDetails = ({ post }) => {
   const router = useRouter();
@@ -34,30 +35,48 @@ const PostDetails = ({ post }) => {
     </>
   );
 };
+
 export default PostDetails;
 
 export async function getStaticProps({ params }) {
   try {
     const data = await hygraphClient.request(POST_DETAILS_QUERY, { slug: params.slug });
+
+    if (!data.post) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
       props: { post: data.post },
-      revalidate: 60,
+      revalidate: 60, // ISR: Regenerate every 60 seconds
     };
   } catch (err) {
-    console.error("GraphQL error:", err);
+    console.error("GraphQL error in getStaticProps:", err);
     return {
-      notFound: true, // Optional: show 404 if fetch fails
+      notFound: true,
     };
   }
 }
 
-
-// Specify dynamic routes to pre-render pages based on data.
-// The HTML is generated at build time and will be reused on each request.
 export async function getStaticPaths() {
-  const posts = await getPosts();
-  return {
-    paths: posts.map(({ node: { slug } }) => ({ params: { slug } })),
-    fallback: true,
-  };
+  try {
+    const posts = await getPosts();
+
+    const paths = posts.map(({ node: { slug } }) => ({
+      params: { slug },
+    }));
+
+    return {
+      paths,
+      fallback: true, // allow on-demand generation
+    };
+  } catch (err) {
+    console.error("Error in getStaticPaths:", err);
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
 }
