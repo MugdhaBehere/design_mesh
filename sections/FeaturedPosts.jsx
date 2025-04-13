@@ -58,7 +58,7 @@ const FeaturedPosts = () => {
         responsive={responsive}
         customLeftArrow={customLeftArrow}
         customRightArrow={customRightArrow}
-        itemClass="px-2 sm:px-4 md:px-6"
+        itemClass="px-4 sm:px-6 md:px-8"
         containerClass="py-6"
       >
         {dataLoaded &&
