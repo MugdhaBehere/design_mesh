@@ -75,7 +75,7 @@ const FeaturedPosts = () => {
   // Make sure this is false again to use custom arrows
   const showDefaultControls = false; 
 
-  console.log('FeaturedPosts: Rendering component. Data Loaded:', dataLoaded, 'Posts Array:', featuredPosts);
+  //console.log('FeaturedPosts: Rendering component. Data Loaded:', dataLoaded, 'Posts Array:', featuredPosts);
 
   return (
     <div className="mb-8 relative">
