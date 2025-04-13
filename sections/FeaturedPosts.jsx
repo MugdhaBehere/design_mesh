@@ -35,17 +35,17 @@ const FeaturedPosts = () => {
     });
   }, []);
 
-  // Custom Arrow Components (Significantly Larger)
+  // Custom Arrow Components (Intermediate Size)
   const CustomLeftArrowComponent = ({ onClick }) => (
     <div
-      // Increased container size to w-16 h-16, padding to p-3
-      className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 cursor-pointer bg-pink-600 rounded-full shadow-lg w-16 h-16 flex justify-center items-center"
+      // Intermediate container size: w-12 h-12, padding p-2
+      className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
       onClick={() => onClick()}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        // Increased SVG size to h-10 w-10
-        className="h-10 w-10 text-white"
+        // Intermediate SVG size: h-8 w-8
+        className="h-8 w-8 text-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -57,14 +57,14 @@ const FeaturedPosts = () => {
 
   const CustomRightArrowComponent = ({ onClick }) => (
     <div
-      // Increased container size to w-16 h-16, padding to p-3
-      className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 cursor-pointer bg-pink-600 rounded-full shadow-lg w-16 h-16 flex justify-center items-center"
+      // Intermediate container size: w-12 h-12, padding p-2
+      className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-2 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
       onClick={() => onClick()}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        // Increased SVG size to h-10 w-10
-        className="h-10 w-10 text-white"
+        // Intermediate SVG size: h-8 w-8
+        className="h-8 w-8 text-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
