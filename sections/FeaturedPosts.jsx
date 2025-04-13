@@ -38,8 +38,7 @@ const FeaturedPosts = () => {
   // Custom Left Arrow
   const customLeftArrow = (
     <div
-      className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-4 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
-      style={{ backgroundColor: 'rgba(255, 0, 0, 0.8)' }} // Temporary color for visibility
+      className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-3 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -62,8 +61,7 @@ const FeaturedPosts = () => {
   // Custom Right Arrow
   const customRightArrow = (
     <div
-      className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-4 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
-      style={{ backgroundColor: 'rgba(0, 0, 255, 0.8)' }} // Temporary color for visibility
+      className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-3 cursor-pointer bg-pink-600 rounded-full shadow-lg w-12 h-12 flex justify-center items-center"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
