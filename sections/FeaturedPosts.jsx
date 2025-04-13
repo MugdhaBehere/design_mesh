@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+// Make sure these paths are correct for your project structure
 import { FeaturedPostCard } from '../components';
 import { getFeaturedPosts } from '../services';
 
-// --- Keep your responsive config and Custom Arrow components as they were in the last code ---
+// Responsive configuration for the carousel
 const responsive = {
   superLargeDesktop: { breakpoint: { max: 4000, min: 1024 }, items: 5 },
   desktop: { breakpoint: { max: 1024, min: 768 }, items: 3 },
@@ -16,13 +17,13 @@ const responsive = {
 // Simple Custom Arrow Components for Testing
 const CustomLeftArrowComponent = ({ onClick }) => {
   // Log to ensure this component is attempted to be rendered by the library
-  console.log("Rendering Simple CustomLeftArrowComponent"); 
+  console.log("Rendering Simple CustomLeftArrowComponent");
   return (
-    <button 
-      onClick={onClick} 
+    <button
+      onClick={onClick}
       // Basic styling to make it visible and positioned
-      style={{ 
-        position: 'absolute', 
+      style={{
+        position: 'absolute',
         left: '10px',             // Position from left
         top: '50%',               // Roughly vertical center
         transform: 'translateY(-50%)', // More precise vertical center
@@ -32,7 +33,7 @@ const CustomLeftArrowComponent = ({ onClick }) => {
         padding: '10px',
         border: 'none',
         borderRadius: '5px',
-        cursor: 'pointer' 
+        cursor: 'pointer'
       }}
     >
       LEFT TEST
@@ -42,13 +43,13 @@ const CustomLeftArrowComponent = ({ onClick }) => {
 
 const CustomRightArrowComponent = ({ onClick }) => {
   // Log to ensure this component is attempted to be rendered by the library
-  console.log("Rendering Simple CustomRightArrowComponent"); 
+  console.log("Rendering Simple CustomRightArrowComponent");
   return (
-    <button 
-      onClick={onClick} 
+    <button
+      onClick={onClick}
       // Basic styling to make it visible and positioned
-      style={{ 
-        position: 'absolute', 
+      style={{
+        position: 'absolute',
         right: '10px',            // Position from right
         top: '50%',               // Roughly vertical center
         transform: 'translateY(-50%)', // More precise vertical center
@@ -58,7 +59,7 @@ const CustomRightArrowComponent = ({ onClick }) => {
         padding: '10px',
         border: 'none',
         borderRadius: '5px',
-        cursor: 'pointer' 
+        cursor: 'pointer'
       }}
     >
       RIGHT TEST
@@ -66,35 +67,55 @@ const CustomRightArrowComponent = ({ onClick }) => {
   );
 };
 
-// --- Make sure you update your FeaturedPosts component ---
+// Main FeaturedPosts Component
 const FeaturedPosts = () => {
-  // ... (keep useState, useEffect, responsive) ...
+  // State hooks MUST be called inside the component body
+  const [featuredPosts, setFeaturedPosts] = useState([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
-  // --- Use the SIMPLE arrow components defined above ---
+  // Effect hook MUST be called inside the component body
+  useEffect(() => {
+    console.log('FeaturedPosts: useEffect triggered');
+    getFeaturedPosts().then((result) => {
+      console.log('FeaturedPosts: Data fetched successfully. Result:', result);
+      // Ensure result is always an array, even if API returns null/undefined
+      setFeaturedPosts(Array.isArray(result) ? result : []);
+      setDataLoaded(true);
+    }).catch(error => {
+      console.error('FeaturedPosts: Error fetching data:', error);
+      setFeaturedPosts([]); // Set empty array on error
+      setDataLoaded(true); // Still mark as loaded to potentially show "No posts" message
+    });
+  }, []); // Empty dependency array means this runs once on mount
 
-  // Make sure this is false again to use custom arrows
-  const showDefaultControls = false; 
+  // This log caused build errors if placed before useState, keep commented for now
+  // console.log('FeaturedPosts: Rendering component. Data Loaded:', dataLoaded, 'Posts Array:', featuredPosts);
 
-  //console.log('FeaturedPosts: Rendering component. Data Loaded:', dataLoaded, 'Posts Array:', featuredPosts);
+  // Variable to easily switch between custom/default arrows if needed later
+  const showDefaultControls = false;
 
   return (
-    <div className="mb-8 relative">
+    <div className="mb-8 relative"> {/* Ensure this div has relative positioning */}
       <Carousel
-        infinite
-        // Ensure you are passing the custom components
-        customLeftArrow={!showDefaultControls ? <CustomLeftArrowComponent /> : undefined} 
+        infinite // Enable infinite looping
+        // Pass the custom arrow components if not showing default
+        customLeftArrow={!showDefaultControls ? <CustomLeftArrowComponent /> : undefined}
         customRightArrow={!showDefaultControls ? <CustomRightArrowComponent /> : undefined}
-        responsive={responsive}
-        itemClass="px-4"
-        // showDots={showDefaultControls} // You can remove or keep this
+        responsive={responsive} // Apply responsive settings
+        itemClass="px-4" // Add padding around each carousel item
       >
-        {/* ... (keep data mapping logic) ... */}
+        {/* Conditionally render posts based on dataLoaded and if posts exist */}
         {dataLoaded && featuredPosts && featuredPosts.length > 0 ? (
              featuredPosts.map((post, index) => (
+              // Ensure FeaturedPostCard component is correctly imported and used
               <FeaturedPostCard key={index} post={post} />
             ))
         ) : (
-          dataLoaded ? <p>No featured posts available.</p> : <p>Loading posts...</p> 
+          // Display a message while loading or if no posts are available
+          // Avoids layout shifts or errors if featuredPosts is initially null/undefined
+          <div style={{ textAlign: 'center', padding: '20px', color: '#888' }}> {/* Basic styling for message */}
+             {dataLoaded ? 'No featured posts available.' : 'Loading posts...'}
+          </div>
         )}
       </Carousel>
     </div>
