@@ -61,7 +61,7 @@ const FeaturedPosts = () => {
   // If the console logs look okay but arrows still don't appear,
   // try commenting out the custom arrows and uncommenting the line below
   // const showDefaultControls = true; 
-  const showDefaultControls = false; // Set to true to test default controls
+  const showDefaultControls = true; // Set to true to test default controls
 
   return (
     <div className="mb-8 relative">
