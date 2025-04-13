@@ -8,15 +8,15 @@ import { getFeaturedPosts } from '../services';
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 1024 },
-    items: 3,
+    items: 5,
   },
   desktop: {
     breakpoint: { max: 1024, min: 768 },
-    items: 2,
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 768, min: 640 },
-    items: 1,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 640, min: 0 },
